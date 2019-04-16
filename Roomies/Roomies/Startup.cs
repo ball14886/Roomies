@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EFGetStarted.AspNetCore.NewDb.Models;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,6 +32,14 @@ namespace Roomies
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var connection = @"Server=.;Database=RoomiesEF;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<RoomiesContext>
+                (options => options.UseSqlServer(connection));
+            // BloggingContext requires
+            // using EFGetStarted.AspNetCore.NewDb.Models;
+            // UseSqlServer requires
+            // using Microsoft.EntityFrameworkCore;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +63,7 @@ namespace Roomies
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=HomePage}/{id?}");
+                    template: "{controller=Apartments}/{action=Index}/{id?}");
             });
 
             Bootstrap();
@@ -71,10 +76,11 @@ namespace Roomies
                 Show = false
             };
 
-            var mainWindow = await Electron.WindowManager.CreateWindowAsync();
+            var mainWindow = await Electron.WindowManager.CreateWindowAsync(options);
 
             mainWindow.OnReadyToShow += () =>
             {
+                mainWindow.Maximize();
                 mainWindow.Show();
             };
         }
