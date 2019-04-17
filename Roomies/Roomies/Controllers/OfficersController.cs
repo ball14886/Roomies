@@ -7,23 +7,23 @@ using System;
 
 namespace Roomies.Controllers
 {
-    public class ApartmentsController : Controller
+    public class OfficersController : Controller
     {
         private readonly RoomiesContext _context;
         private long _OfficerID = 0;
 
-        public ApartmentsController(RoomiesContext context)
+        public OfficersController(RoomiesContext context)
         {
             _context = context;
         }
 
-        // GET: Apartments
+        // GET: Officers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Apartments.ToListAsync());
+            return View(await _context.Officers.ToListAsync());
         }
 
-        // GET: Apartments/Details/5
+        // GET: Officers/Details/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -31,47 +31,47 @@ namespace Roomies.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartments.FirstOrDefaultAsync(m => m.ApartmentID == id);
-            if (apartment == null)
+            var officer = await _context.Officers
+                .FirstOrDefaultAsync(m => m.OfficerID == id);
+            if (officer == null)
             {
                 return NotFound();
             }
 
-            return View(apartment);
+            return View(officer);
         }
 
-        // GET: Apartments/Create
+        // GET: Officers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Apartments/Create
+        // POST: Officers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ApartmentID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
+        public async Task<IActionResult> Create([Bind("OfficerID,FirstName,MiddleName,LastName,TaxIdentification,PassPortNumber,DateOfBirth,Address,ContactNumber,ContactNumber2,Note,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Officer officer)
         {
             var now = DateTime.Now;
-
-            apartment.IsActive = true;
-            apartment.IsDeleted = false;
-            apartment.CreatedDateTime = now;
-            apartment.CreatedBy = _OfficerID;
-            apartment.UpdatedDateTime = now;
-            apartment.UpdatedBy = _OfficerID;
+            officer.IsActive = true;
+            officer.IsDeleted = false;
+            officer.CreatedDateTime = now;
+            officer.CreatedBy = _OfficerID;
+            officer.UpdatedDateTime = now;
+            officer.UpdatedBy = _OfficerID;
 
             if (ModelState.IsValid)
             {
-                _context.Add(apartment);
+                _context.Add(officer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(apartment);
+            return View(officer);
         }
 
-        // GET: Apartments/Edit/5
+        // GET: Officers/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -79,25 +79,25 @@ namespace Roomies.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartments.FindAsync(id);
-            if (apartment == null)
+            var officer = await _context.Officers.FindAsync(id);
+            if (officer == null)
             {
                 return NotFound();
             }
-            return View(apartment);
+            return View(officer);
         }
 
-        // POST: Apartments/Edit/5
+        // POST: Officers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ApartmentID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
+        public async Task<IActionResult> Edit(long id, [Bind("OfficerID,FirstName,MiddleName,LastName,TaxIdentification,PassPortNumber,DateOfBirth,Address,ContactNumber,ContactNumber2,Note,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Officer officer)
         {
-            apartment.UpdatedDateTime = DateTime.Now;
-            apartment.UpdatedBy = _OfficerID;
+            officer.UpdatedDateTime = DateTime.Now;
+            officer.UpdatedBy = _OfficerID;
 
-            if (id != apartment.ApartmentID)
+            if (id != officer.OfficerID)
             {
                 return NotFound();
             }
@@ -106,12 +106,12 @@ namespace Roomies.Controllers
             {
                 try
                 {
-                    _context.Update(apartment);
+                    _context.Update(officer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ApartmentExists(apartment.ApartmentID))
+                    if (!OfficerExists(officer.OfficerID))
                     {
                         return NotFound();
                     }
@@ -122,10 +122,10 @@ namespace Roomies.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(apartment);
+            return View(officer);
         }
 
-        // GET: Apartments/Delete/5
+        // GET: Officers/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -133,36 +133,35 @@ namespace Roomies.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartments
-                .FirstOrDefaultAsync(m => m.ApartmentID == id);
-            if (apartment == null)
+            var officer = await _context.Officers
+                .FirstOrDefaultAsync(m => m.OfficerID == id);
+            if (officer == null)
             {
                 return NotFound();
             }
 
-            return View(apartment);
+            return View(officer);
         }
 
-        // POST: Apartments/Delete/5
+        // POST: Officers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var apartment = await _context.Apartments.FindAsync(id);
+            var officer = await _context.Officers.FindAsync(id);
 
-            apartment.IsActive = false;
-            apartment.IsDeleted = true;
-            apartment.UpdatedDateTime = DateTime.Now;
-            apartment.UpdatedBy = _OfficerID;
+            officer.IsActive = false;
+            officer.IsDeleted = true;
+            officer.UpdatedDateTime = DateTime.Now;
+            officer.UpdatedBy = _OfficerID;
 
-            _context.Apartments.Remove(apartment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ApartmentExists(long id)
+        private bool OfficerExists(long id)
         {
-            return _context.Apartments.Any(e => e.ApartmentID == id);
+            return _context.Officers.Any(e => e.OfficerID == id);
         }
     }
 }

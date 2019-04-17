@@ -1,0 +1,114 @@
+﻿@model EFGetStarted.AspNetCore.NewDb.Models.Officer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Officer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxIdentification)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaxIdentification)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassPortNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassPortNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactNumber2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OfficerID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
