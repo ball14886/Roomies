@@ -1,0 +1,95 @@
+﻿@model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.RoomType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LateAllowedDayCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LatePaymentRatePerDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LateAllowedDayCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatePaymentRatePerDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RoomTypeID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RoomTypeID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RoomTypeID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
