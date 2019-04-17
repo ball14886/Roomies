@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.RoomRate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.MaxTenantCount)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.LateAllowedDayCount)
             </th>
             <th>
@@ -60,6 +63,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.RoomRate)
             </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.MaxTenantCount)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.LateAllowedDayCount)
             </td>

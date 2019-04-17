@@ -148,6 +148,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal RoomRate { get; set; }
+        public int MaxTenantCount { get; set; }
         public int LateAllowedDayCount { get; set; }
         public decimal LatePaymentRatePerDay { get; set; }
 

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<EFGetStarted.AspNetCore.NewDb.Models.Contract>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Officer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WaterStartUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricityStartUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepositAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepositDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinimumMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.RoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenant.TenantID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractForm.ContractFormID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Officer.OfficerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaterStartUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectricityStartUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepositAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepositDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimumMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

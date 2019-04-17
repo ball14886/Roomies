@@ -1,0 +1,79 @@
+﻿@model EFGetStarted.AspNetCore.NewDb.Models.Contract
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Contract</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RoomID" />
+            <input type="hidden" asp-for="TenantID" />
+            <div class="form-group">
+                <label asp-for="ContractFormID" class="control-label"></label>
+                <select asp-for="ContractFormID" class="form-control" asp-items="ViewBag.ContractFormID"></select>
+                <span asp-validation-for="ContractFormID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficerID" class="control-label"></label>
+                <select asp-for="OfficerID" class="form-control" asp-items="ViewBag.OfficerID"></select>
+                <span asp-validation-for="OfficerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterStartUnit" class="control-label"></label>
+                <input asp-for="WaterStartUnit" class="form-control" />
+                <span asp-validation-for="WaterStartUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElectricityStartUnit" class="control-label"></label>
+                <input asp-for="ElectricityStartUnit" class="form-control" />
+                <span asp-validation-for="ElectricityStartUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepositAmount" class="control-label"></label>
+                <input asp-for="DepositAmount" class="form-control" />
+                <span asp-validation-for="DepositAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepositDateTime" class="control-label"></label>
+                <input asp-for="DepositDateTime" class="form-control" />
+                <span asp-validation-for="DepositDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractStartDate" class="control-label"></label>
+                <input asp-for="ContractStartDate" class="form-control" />
+                <span asp-validation-for="ContractStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractEndDate" class="control-label"></label>
+                <input asp-for="ContractEndDate" class="form-control" />
+                <span asp-validation-for="ContractEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumMonth" class="control-label"></label>
+                <input asp-for="MinimumMonth" class="form-control" />
+                <span asp-validation-for="MinimumMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

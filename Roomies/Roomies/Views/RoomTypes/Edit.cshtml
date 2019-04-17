@@ -29,6 +29,11 @@
                 <span asp-validation-for="RoomRate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MaxTenantCount" class="control-label"></label>
+                <input asp-for="MaxTenantCount" class="form-control" />
+                <span asp-validation-for="MaxTenantCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="LateAllowedDayCount" class="control-label"></label>
                 <input asp-for="LateAllowedDayCount" class="form-control" />
                 <span asp-validation-for="LateAllowedDayCount" class="text-danger"></span>

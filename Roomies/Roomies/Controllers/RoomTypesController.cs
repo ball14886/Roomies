@@ -52,7 +52,7 @@ namespace Roomies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoomTypeID,Name,Description,RoomRate,LateAllowedDayCount,LatePaymentRatePerDay,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] RoomType roomType)
+        public async Task<IActionResult> Create([Bind("RoomTypeID,Name,Description,RoomRate,MaxTenantCount,LateAllowedDayCount,LatePaymentRatePerDay,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] RoomType roomType)
         {
             var now = DateTime.Now;
             roomType.IsActive = true;
@@ -92,7 +92,7 @@ namespace Roomies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("RoomTypeID,Name,Description,RoomRate,LateAllowedDayCount,LatePaymentRatePerDay,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] RoomType roomType)
+        public async Task<IActionResult> Edit(long id, [Bind("RoomTypeID,Name,Description,RoomRate,MaxTenantCount,LateAllowedDayCount,LatePaymentRatePerDay,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] RoomType roomType)
         {
             roomType.UpdatedDateTime = DateTime.Now;
             roomType.UpdatedBy = _OfficerID;
