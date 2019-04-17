@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EFGetStarted.AspNetCore.NewDb.Models;
+using System;
 
 namespace Roomies.Controllers
 {
     public class ApartmentsController : Controller
     {
         private readonly RoomiesContext _context;
+        private long _OfficerID = 0;
 
         public ApartmentsController(RoomiesContext context)
         {
@@ -29,7 +31,7 @@ namespace Roomies.Controllers
                 return NotFound();
             }
 
-            var apartment = await _context.Apartments.FirstOrDefaultAsync(m => m.ID == id);
+            var apartment = await _context.Apartments.FirstOrDefaultAsync(m => m.ApartmentID == id);
             if (apartment == null)
             {
                 return NotFound();
@@ -49,8 +51,17 @@ namespace Roomies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
+        public async Task<IActionResult> Create([Bind("ApartmentID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
         {
+            var now = DateTime.Now;
+
+            apartment.IsActive = true;
+            apartment.IsDeleted = false;
+            apartment.CreatedDateTime = now;
+            apartment.CreatedBy = _OfficerID;
+            apartment.UpdatedDateTime = now;
+            apartment.UpdatedBy = _OfficerID;
+
             if (ModelState.IsValid)
             {
                 _context.Add(apartment);
@@ -81,9 +92,12 @@ namespace Roomies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
+        public async Task<IActionResult> Edit(long id, [Bind("ApartmentID,Name,Address,IsActive,IsDeleted,CreatedDateTime,CreatedBy,UpdatedDateTime,UpdatedBy")] Apartment apartment)
         {
-            if (id != apartment.ID)
+            apartment.UpdatedDateTime = DateTime.Now;
+            apartment.UpdatedBy = _OfficerID;
+
+            if (id != apartment.ApartmentID)
             {
                 return NotFound();
             }
@@ -97,7 +111,7 @@ namespace Roomies.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ApartmentExists(apartment.ID))
+                    if (!ApartmentExists(apartment.ApartmentID))
                     {
                         return NotFound();
                     }
@@ -120,7 +134,7 @@ namespace Roomies.Controllers
             }
 
             var apartment = await _context.Apartments
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.ApartmentID == id);
             if (apartment == null)
             {
                 return NotFound();
@@ -142,7 +156,7 @@ namespace Roomies.Controllers
 
         private bool ApartmentExists(long id)
         {
-            return _context.Apartments.Any(e => e.ID == id);
+            return _context.Apartments.Any(e => e.ApartmentID == id);
         }
     }
 }
